@@ -4,5 +4,8 @@
         <file>icons/Home.png</file>
         <file>icons/Gear.png</file>
         <file>icons/Clock.png</file>
+        <file>icons/Chart.png</file>
+        <file>icons/Blocks.png</file>
+        <file>icons/Back.png</file>
     </qresource>
 </RCC>
