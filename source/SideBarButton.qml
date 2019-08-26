@@ -33,7 +33,7 @@ Button {
                                      button.iconSize - 2*cont.lineWidth,
                                      button.iconRadius, button.iconRadius)
 
-                    cont.strokeStyle = "rgba(0, 0, 0, 0.25)";
+                    cont.strokeStyle = "rgba(100, 100, 100, 0.25)";
                     cont.stroke();
 
                     cont.fillStyle = "rgba(0, 0, 0, 0.5)";

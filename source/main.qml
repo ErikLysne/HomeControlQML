@@ -19,6 +19,25 @@ Window {
         }
     }
 
+    Canvas {
+        anchors.fill: parent
+
+        onPaint: {
+            var cont = getContext("2d");
+            cont.reset();
+
+            cont.beginPath();
+            cont.lineWidth = 1.0;
+
+            cont.lineTo(width, 0);
+            cont.lineTo(0, height);
+            cont.lineTo(0, 0);
+
+            cont.fillStyle = "rgba(255, 255, 255, 0.02)";
+            cont.fill();
+        }
+    }
+
     StackView {
         id: stackView
         anchors.fill: parent
