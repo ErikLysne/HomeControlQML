@@ -1,0 +1,3 @@
+module Buttons
+MainMenuButton 1.0 MainMenuButton.qml
+SideBarButton 1.0 SideBarButton.qml

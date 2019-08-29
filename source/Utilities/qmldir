@@ -1,0 +1,3 @@
+module Utilities
+SideBar 1.0 SideBar.qml
+TopStatusBar 1.0 TopStatusBar.qml

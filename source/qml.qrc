@@ -1,12 +1,15 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
-        <file>MainMenuButton.qml</file>
-        <file>TopStatusBar.qml</file>
-        <file>MainMenuPage.qml</file>
-        <file>HomePage.qml</file>
-        <file>SideBarButton.qml</file>
-        <file>SideBar.qml</file>
+        <file>Buttons/MainMenuButton.qml</file>
+        <file>Buttons/qmldir</file>
+        <file>Buttons/SideBarButton.qml</file>
+        <file>Pages/HomePage.qml</file>
+        <file>Pages/MainMenuPage.qml</file>
+        <file>Pages/qmldir</file>
+        <file>Utilities/qmldir</file>
+        <file>Utilities/SideBar.qml</file>
+        <file>Utilities/TopStatusBar.qml</file>
+        <file>Utilities/FloorPlan.qml</file>
     </qresource>
-    <qresource prefix="/components"/>
 </RCC>

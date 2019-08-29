@@ -3,6 +3,9 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 2.2
 import QtGraphicalEffects 1.0
 
+import Utilities 1.0
+import Pages 1.0
+
 Window {
     visible: true
     width: 1080
@@ -23,18 +26,18 @@ Window {
         anchors.fill: parent
 
         onPaint: {
-            var cont = getContext("2d");
-            cont.reset();
+            var context = getContext("2d");
+            context.reset();
 
-            cont.beginPath();
-            cont.lineWidth = 1.0;
+            context.beginPath();
+            context.lineWidth = 1.0;
 
-            cont.lineTo(width, 0);
-            cont.lineTo(0, height);
-            cont.lineTo(0, 0);
+            context.lineTo(width, 0);
+            context.lineTo(0, height);
+            context.lineTo(0, 0);
 
-            cont.fillStyle = "rgba(255, 255, 255, 0.02)";
-            cont.fill();
+            context.fillStyle = "rgba(255, 255, 255, 0.02)";
+            context.fill();
         }
     }
 
