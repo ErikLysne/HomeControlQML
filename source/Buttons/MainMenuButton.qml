@@ -5,7 +5,7 @@ import QtQuick.Controls.Styles 1.4
 Button {
     id: button
     width: 200
-    height : width
+    height: width
 
     property alias buttonIcon: button.iconSource
     property alias buttonText: button.text
@@ -49,7 +49,7 @@ Button {
                 height: button.iconSize
                 width: button.iconSize
                 anchors.centerIn: parent
-                anchors.verticalCenterOffset: -button.height * 0.10
+                anchors.verticalCenterOffset: button.height * -0.10
 
                 onPaint: {
                     var context = getContext("2d");
@@ -78,6 +78,11 @@ Button {
                 anchors.centerIn: iconWindow
                 sourceSize.height: iconWindow * 0.5
                 source: button.iconSource
+
+                // Shine layer
+                IconShine {
+                    icon: button
+                }
             }
 
             // Text layer
@@ -90,44 +95,6 @@ Button {
                 color: button.hovered && !button.pressed ? "white" : "#ddd";
             }
 
-            // Shine layer
-            Canvas {
-                height: button.iconSize
-                width: button.iconSize
-                anchors.centerIn: iconWindow
-                onPaint: {
-                    var context = getContext("2d");
-                    context.reset();
-
-                    context.beginPath();
-                    context.lineWidth = height * 0.05;
-                    context.roundedRect(context.lineWidth, context.lineWidth,
-                                        button.iconSize - 2*context.lineWidth,
-                                        button.iconSize - 2*context.lineWidth,
-                                        button.iconRadius, button.iconRadius)
-
-                    context.moveTo(0, height * 0.4);
-                    context.bezierCurveTo(width * 0.25, height * 0.6, width * 0.75, height * 0.6, width, height * 0.4);
-                    context.lineTo(width, height);
-                    context.lineTo(0, height);
-                    context.lineTo(0, height * 0.4);
-                    context.clip();
-
-                    context.beginPath();
-                    context.roundedRect(context.lineWidth, context.lineWidth,
-                                        button.iconSize - 2*context.lineWidth,
-                                        button.iconSize - 2*context.lineWidth,
-                                        button.iconRadius, button.iconRadius);
-
-                    var gradient = context.createLinearGradient(0, 0, 0, height);
-                    gradient.addColorStop(0, "rgba(255, 255, 255, 0.5)");
-                    gradient.addColorStop(0.6, "rgba(255, 255, 255, 0)");
-                    context.fillStyle = gradient;
-                    context.fill();
-                }
-
-                opacity: !button.pressed ? 1 : 0.75
-            }
         }
         label: null
     }

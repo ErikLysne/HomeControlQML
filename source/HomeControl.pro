@@ -25,8 +25,19 @@ QML_IMPORT_PATH = $$PWD/
 QML_DESIGNER_IMPORT_PATH = $$PWD/
 
 # Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
+#qnx: target.path = /tmp/$${TARGET}/bin
+#else: unix:!android: target.path = /opt/$${TARGET}/bin
+
+linux-g++ {
+    message("Configuring for Linux Desktop")
+    target.path = /opt/$${TARGET}/bin
+}
+linux-rasp-pi-g++ {
+    INCLUDEPATH += /home/erik/raspi/sysroot/usr/include/
+    message("Configuring for Raspberry Pi")
+    target.path = /home/pi/Dev/HomeControl
+}
+
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \

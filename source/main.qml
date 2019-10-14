@@ -1,6 +1,6 @@
 import QtQuick 2.9
 import QtQuick.Window 2.2
-import QtQuick.Controls 2.2
+import QtQuick.Controls 2.12
 import QtGraphicalEffects 1.0
 
 import Utilities 1.0
@@ -12,16 +12,18 @@ Window {
     height: 720
     title: qsTr("Home Control")
 
+    // Background
     LinearGradient {
         anchors.fill: parent
         start: Qt.point(0, 0)
         end: Qt.point(0, parent.height)
         gradient: Gradient {
             GradientStop { position: 0.0; color: Qt.rgba(0, 0, 0, 1.0) }
-            GradientStop { position: 1.0; color: Qt.rgba(0.1, 0.1, 0.25, 1.0) }
+            GradientStop { position: 1.0; color: Qt.rgba(0.45, 0.45, 0.85, 1.0) }
         }
     }
 
+    // Triangle
     Canvas {
         anchors.fill: parent
 
@@ -41,11 +43,44 @@ Window {
         }
     }
 
+    // Stack
     StackView {
         id: stackView
         anchors.fill: parent
         initialItem: MainMenuPage {}
 
+        pushEnter: Transition {
+                PropertyAnimation {
+                    property: "opacity"
+                    from: 0
+                    to:1
+                    duration: 200
+                }
+            }
+            pushExit: Transition {
+                PropertyAnimation {
+                    property: "opacity"
+                    from: 1
+                    to:0
+                    duration: 200
+                }
+            }
+            popEnter: Transition {
+                PropertyAnimation {
+                    property: "opacity"
+                    from: 0
+                    to:1
+                    duration: 200
+                }
+            }
+            popExit: Transition {
+                PropertyAnimation {
+                    property: "opacity"
+                    from: 1
+                    to:0
+                    duration: 200
+                }
+            }
     }
 
     TopStatusBar {}

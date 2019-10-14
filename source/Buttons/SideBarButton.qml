@@ -12,7 +12,6 @@ Button {
     readonly property real iconRadius: height
     readonly property real iconSize: height * 0.5
 
-
     style: ButtonStyle {
         background:  Item {
             // Icon window layer

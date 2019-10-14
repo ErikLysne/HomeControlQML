@@ -11,5 +11,8 @@
         <file>Utilities/SideBar.qml</file>
         <file>Utilities/TopStatusBar.qml</file>
         <file>Utilities/FloorPlan.qml</file>
+        <file>Pages/LightsPage.qml</file>
+        <file>Buttons/BackButton.qml</file>
+        <file>Buttons/IconShine.qml</file>
     </qresource>
 </RCC>
