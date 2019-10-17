@@ -43,7 +43,7 @@ Button {
                 height: iconSize * 0.5
                 width: iconSize * 0.5
                 anchors.centerIn: parent
-                source: "../icons/Back.png"
+                source: "../icons/Exit.png"
 
                 // Shine layer
                 IconShine{

@@ -14,5 +14,8 @@
         <file>Pages/LightsPage.qml</file>
         <file>Buttons/BackButton.qml</file>
         <file>Buttons/IconShine.qml</file>
+        <file>Utilities/Room.qml</file>
+        <file>Utilities/FloorOutline.qml</file>
+        <file>Buttons/ExitButton.qml</file>
     </qresource>
 </RCC>

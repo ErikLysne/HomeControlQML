@@ -2,7 +2,11 @@ import QtQuick 2.0
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 
-Canvas {
+Item {
+    property real scaleFactor
+    property real outlineLineWidth
+    property real roomLineWidth
+
     id: floorPlan
     height: parent.height
     width: parent.width
@@ -11,103 +15,190 @@ Canvas {
     anchors.leftMargin: width * 0.5 - (815 * scaleFactor * 0.5)
     anchors.topMargin: height * 0.5 - (400 * scaleFactor * 0.5)
 
-    property real scaleFactor
-    property real outlineLineWidth
-    property real roomLineWidth
-
     // Bedroom
-    Button {
+    Room {
         id: bedroom
-        height: 235 * scaleFactor + outlineLineWidth
-        width: 315 * scaleFactor + outlineLineWidth
-        anchors.top: parent.top
-        anchors.left: parent.left
+        coordinates:
+        [
+            [0,     50],
+            [0,     150],
+            [0,     235],
+            [225,   235],
+            [300,   235],
+            [315,   235],
+            [315,   0]
+        ]
 
-        style: ButtonStyle {
-            background: Canvas {
-                id: bedroomStyle
-                height: parent.height
-                width: parent.width
-                anchors.top: parent.top
-                anchors.left: parent.left
+        paintRules:
+        [
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            1
+        ]
 
-                property color fillColor: bedroom.pressed ? Qt.rgba(1.0, 1.0, 1.0, 0.6) : Qt.rgba(1.0, 1.0, 1.0, 0.0);
-                onFillColorChanged: requestPaint()
+        roomHeight: 235
+        roomWidth: 315
+        roomXShift: 0
+        roomYShift: 0
+        scaleFactor: floorPlan.scaleFactor
+        roomLineWidth: floorPlan.roomLineWidth
+        outlineLineWidth: floorPlan.outlineLineWidth
 
-                onPaint: {
-                    var context = getContext("2d");
-                    context.reset();
+        Image {
+            id: bedroomIcon
+            anchors.centerIn: parent
+            source: "../icons/Rooms/roomsBedroom.svg"
+        }
+    }
 
-                    var coordinates = [
-                        [[0,    0],     1],
-                        [[0,    235],   1],
-                        [[225,  235],   1],
-                        [[300,  235],   0],
-                        [[315,  235],   1],
-                        [[315,  0],     1]
-                    ];
+    // Hallway
+    Room {
+        id: hallway
+        coordinates:
+        [
+            [0,     15],
+            [0,     90],
+            [0,     165],
+            [295,   165],
+            [295,   80],
+            [295,   15],
+            [295,   0],
+            [280,   0],
+            [200,   0],
+            [170,   0],
+            [95,    0]
+        ]
 
-                    context.lineWidth = floorPlan.roomLineWidth;
-                    context.beginPath();
-                    for (var i = 0; i < coordinates.length; i++) {
-                        const x = coordinates[i][0][0] * floorPlan.scaleFactor + floorPlan.outlineLineWidth;
-                        const y = coordinates[i][0][1] * floorPlan.scaleFactor + floorPlan.outlineLineWidth;
+        paintRules:
+        [
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            0,
+            1,
+            0,
+        ]
 
-                        if (coordinates[i][1] === 1)
-                            context.lineTo(x, y);
-                        else
-                            context.moveTo(x, y);
-                    }
-                    context.lineTo(floorPlan.outlineLineWidth, floorPlan.outlineLineWidth);
+        roomHeight: 170
+        roomWidth: 295
+        roomXShift: 130
+        roomYShift: 235
+        scaleFactor: floorPlan.scaleFactor
+        roomLineWidth: floorPlan.roomLineWidth
+        outlineLineWidth: floorPlan.outlineLineWidth
 
-                    context.strokeStyle = Qt.rgba(0.0, 0.0, 0.0, 0.75);
-                    context.stroke();
+        Image {
+            id: hallwayIcon
+            anchors.centerIn: parent
+            source: "../icons/Rooms/roomsFrontdoor.svg"
+        }
+    }
 
-                    context.lineWidth = floorPlan.roomLineWidth * 0.5;
-                    context.beginPath();
-                    for (var j = 0; j < coordinates.length; j++) {
-                        const x = coordinates[j][0][0] * floorPlan.scaleFactor + floorPlan.outlineLineWidth;
-                        const y = coordinates[j][0][1] * floorPlan.scaleFactor + floorPlan.outlineLineWidth;
-                        context.lineTo(x, y);
-                    }
-                    context.lineTo(floorPlan.outlineLineWidth, floorPlan.outlineLineWidth);
+    // Living room
+    Room {
+        id: livingRoom
+        coordinates:
+        [
+            [40,    0],
+            [40,    235],
+            [0,     235],
+            [0,     250],
+            [0,     315],
+            [0,     400],
+            [390,   400],
+            [390,   215],
+            [390,   135],
+            [390,   0],
+            [40,    0],
+            [40,    235],
+            [125,   235],
+            [40,    235],
+            [40,    0],
+        ]
 
-                    context.fillStyle = bedroomStyle.fillColor;
-                    context.fill();
+        paintRules:
+        [
+            0,
+            0,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            1,
+            0,
+            0
+        ]
 
-                    context.strokeStyle = Qt.rgba(0.0, 0.0, 0.0, 0.5);
-                    context.stroke();
+        roomHeight: 400
+        roomWidth: 390
+        roomXShift: 425
+        roomYShift: 0
+        scaleFactor: floorPlan.scaleFactor
+        roomLineWidth: floorPlan.roomLineWidth
+        outlineLineWidth: floorPlan.outlineLineWidth
 
-                    console.log(bedroomStyle.fillColor);
-                }
-            }
+        Image {
+            id: livingRoomIcon
+            anchors.centerIn: parent
+            source: "../icons/Rooms/roomsLiving.svg"
+        }
+    }
+
+    // Bathroom
+    Room {
+        id: bathroom
+        coordinates:
+        [
+            [0,     235],
+            [15,    235],
+            [95,    235],
+            [150,   235],
+            [150,   0]
+        ]
+
+        paintRules:
+        [
+            1,
+            1,
+            0,
+            1,
+            1
+        ]
+
+        roomHeight: 235
+        roomWidth: 150
+        roomXShift: 315
+        roomYShift: 0
+        scaleFactor: floorPlan.scaleFactor
+        roomLineWidth: floorPlan.roomLineWidth
+        outlineLineWidth: floorPlan.outlineLineWidth
+
+        Image {
+            id: bathroomIcon
+            anchors.centerIn: parent
+            source: "../icons/Rooms/roomsBathroom.svg"
         }
     }
 
     // Outline
-    onPaint: {
-        var context = getContext("2d");
-        context.reset();
-
-        var coordinates = [
-            [0,     0],
-            [815,   0],
-            [815,   400],
-            [135,   400],
-            [135,   235],
-            [0,     235],
-        ];
-
-        context.lineWidth = outlineLineWidth;
-        context.beginPath();
-        for (var i = 0; i < coordinates.length; i++) {
-            const x = scaleFactor*coordinates[i][0] + context.lineWidth;
-            const y = scaleFactor*coordinates[i][1] + context.lineWidth;
-            context.lineTo(x, y);
-        }
-        context.lineTo(context.lineWidth, context.lineWidth);
-
-        context.strokeStyle = Qt.rgba(0.0, 0.0, 0.0, 1);
-        context.stroke();
+    FloorOutline {
+        scaleFactor: floorPlan.scaleFactor
+        outlineLineWidth: floorPlan.outlineLineWidth
     }
+
 }

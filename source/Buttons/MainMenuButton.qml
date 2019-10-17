@@ -81,7 +81,6 @@ Button {
 
                 // Shine layer
                 IconShine {
-                    icon: button
                 }
             }
 

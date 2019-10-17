@@ -7,5 +7,10 @@
         <file>icons/Chart.png</file>
         <file>icons/Blocks.png</file>
         <file>icons/Back.png</file>
+        <file>icons/Exit.png</file>
+        <file>icons/Rooms/roomsBedroom.svg</file>
+        <file>icons/Rooms/roomsBathroom.svg</file>
+        <file>icons/Rooms/roomsLiving.svg</file>
+        <file>icons/Rooms/roomsFrontdoor.svg</file>
     </qresource>
 </RCC>

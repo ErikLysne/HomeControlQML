@@ -28,4 +28,13 @@ Page {
         MainMenuButton {buttonText: "SETTINGS"; buttonIcon: "../icons/Gear.png"}
 
     }
+
+    // Exit button
+    ExitButton {
+        buttonSize: 100
+        anchors.top: parent.top
+        anchors.topMargin: 10
+
+        onClicked: Qt.quit()
+    }
 }

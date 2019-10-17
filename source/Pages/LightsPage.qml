@@ -37,7 +37,7 @@ Page {
         // Floor plan
         FloorPlan {
             scaleFactor: 0.75
-            outlineLineWidth: 10.0
+            outlineLineWidth: 15.0
             roomLineWidth: 8.0
         }
     }

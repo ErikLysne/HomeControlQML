@@ -2,3 +2,5 @@ module Utilities
 SideBar 1.0 SideBar.qml
 TopStatusBar 1.0 TopStatusBar.qml
 FloorPlan 1.0 FloorPlan.qml
+FloorOutline 1.0 FloorOutline.qml
+Room 1.0 Room.qml

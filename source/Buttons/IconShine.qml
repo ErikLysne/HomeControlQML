@@ -5,9 +5,6 @@ Canvas {
     height: button.height * 0.5
     width: button.width * 0.5
     anchors.centerIn: parent
-
-    property var icon
-
     onPaint: {
         var context = getContext("2d");
         context.reset();

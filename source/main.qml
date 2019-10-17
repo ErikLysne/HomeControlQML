@@ -10,6 +10,7 @@ Window {
     visible: true
     width: 1080
     height: 720
+    //visibility: "FullScreen"
     title: qsTr("Home Control")
 
     // Background
@@ -18,10 +19,11 @@ Window {
         start: Qt.point(0, 0)
         end: Qt.point(0, parent.height)
         gradient: Gradient {
-            GradientStop { position: 0.0; color: Qt.rgba(0, 0, 0, 1.0) }
-            GradientStop { position: 1.0; color: Qt.rgba(0.45, 0.45, 0.85, 1.0) }
+            GradientStop { position: 0.0; color: Qt.rgba(0.0, 0.0, 0.0, 1.0) }
+            GradientStop { position: 1.0; color: Qt.rgba(0.18, 0.23, 0.32, 1.0) }
         }
     }
+
 
     // Triangle
     Canvas {
