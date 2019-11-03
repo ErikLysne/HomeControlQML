@@ -5,7 +5,7 @@ import Utilities 1.0
 import Buttons 1.0
 
 Page {
-    id: lightsPage
+    id: root
     background: null
     readonly property real boxRadius: 15
 
@@ -28,7 +28,7 @@ Page {
             context.lineWidth = 1.0;
             context.roundedRect(context.lineWidth  * 0.5, context.lineWidth * 0.5,
                                 width - context.lineWidth, height - context.lineWidth,
-                                lightsPage.boxRadius, lightsPage.boxRadius);
+                                root.boxRadius, root.boxRadius);
 
             context.fillStyle = Qt.rgba(1.0, 1.0, 1.0, 0.1);
             context.fill();
@@ -42,9 +42,9 @@ Page {
         }
     }
 
-    // Slider box
+    // Light box
     Canvas {
-        id: sliderBox
+        id: lightBox
         height: parent.height * 0.3
         width: lightMapBox.width
         anchors.top: lightMapBox.bottom
@@ -59,32 +59,116 @@ Page {
             context.lineWidth = 1;
             context.roundedRect(context.lineWidth  * 0.5, context.lineWidth * 0.5,
                                 width - context.lineWidth, height - context.lineWidth,
-                                lightsPage.boxRadius, lightsPage.boxRadius);
+                                root.boxRadius, root.boxRadius);
 
             context.fillStyle = Qt.rgba(1.0, 1.0, 1.0, 0.1);
             context.fill();
+        }
+
+        function updateColorPreview() {
+            colorPreview.requestPaint();
+        }
+
+        Grid {
+            id: sliderGrid
+            anchors.top: parent.top
+            anchors.left: parent.left
+            anchors.topMargin: 30
+            anchors.leftMargin: 30
+            rows: 6
+            columns: 1
+
+            Label {
+                text: "Brightness"
+                color: "white"
+            }
+
+            Slider {
+                id: brightnessSlider
+                width: lightBox.width * 0.5
+                from: 1
+                to: 100
+                value: 50
+
+                onValueChanged: lightBox.updateColorPreview()
+            }
+
+            Label {
+                text: "Hue"
+                color: "white"
+            }
+
+            Slider {
+                id: hueSlider
+                width: lightBox.width * 0.5
+                from: 1
+                to: 100
+                value: 50
+
+                onValueChanged: lightBox.updateColorPreview()
+            }
+
+            Label {
+                text: "Saturation"
+                color: "white"
+            }
+
+            Slider {
+                id: saturationSlider
+                width: lightBox.width * 0.5
+                from: 1
+                to: 100
+                value: 50
+
+                onValueChanged: lightBox.updateColorPreview()
+            }
+        }
+
+        Canvas {
+            id: colorPreview
+            anchors.top: parent.top
+            anchors.left: sliderGrid.right
+            anchors.topMargin: (parent.height - height) * 0.5 + 15
+            anchors.leftMargin: 10
+            height: parent.height * 0.65
+            width: height * 0.5
+
+            onPaint: {
+                var context = getContext("2d");
+                context.reset();
+                context.beginPath();
+                context.lineWidth = 2.0;
+                context.roundedRect(context.lineWidth * 0.5, context.lineWidth * 0.5,
+                                    width - context.lineWidth, height - context.lineWidth,
+                                    root.boxRadius, root.boxRadius);
+                const hue = hueSlider.value / (hueSlider.to - hueSlider.from);
+                const saturation = saturationSlider.value / (saturationSlider.to - saturationSlider.from);
+                const brightness = brightnessSlider.value / (brightnessSlider.to - brightnessSlider.from);
+                context.fillStyle = Qt.hsva(hue, saturation, brightness, 1.0);
+                context.fill();
+                context.strokeStyle = Qt.rgba(1.0, 1.0, 1.0, 0.5);
+                context.stroke();
+            }
         }
     }
 
     // Modes box
     Canvas {
         id: modesBox
-        height: lightMapBox.height + sliderBox.anchors.topMargin + sliderBox.height
+        height: lightMapBox.height + lightBox.anchors.topMargin + lightBox.height
         width: parent.width - lightMapBox.width - anchors.leftMargin - lightMapBox.anchors.leftMargin * 2
         anchors.top: lightMapBox.top
         anchors.left: lightMapBox.right
-        anchors.leftMargin: sliderBox.anchors.topMargin
+        anchors.leftMargin: lightBox.anchors.topMargin
 
         onPaint: {
             var context = getContext("2d");
             context.reset();
-
             context.beginPath();
             context.lineWidth = 1;
             context.roundedRect(context.lineWidth  * 0.5, context.lineWidth * 0.5,
                                 width - context.lineWidth, height - context.lineWidth,
-                                lightsPage.boxRadius, lightsPage.boxRadius);
-
+                                root.boxRadius, root.boxRadius);
             context.fillStyle = Qt.rgba(1.0, 1.0, 1.0, 0.1);
             context.fill();
         }
@@ -96,6 +180,6 @@ Page {
         anchors.top: parent.top
         anchors.topMargin: 10
 
-        onClicked: lightsPage.StackView.view.pop()
+        onClicked: root.StackView.view.pop()
     }
 }

@@ -30,8 +30,8 @@ Canvas {
                             button.iconRadius, button.iconRadius);
 
         var gradient = context.createLinearGradient(0, 0, 0, height);
-        gradient.addColorStop(0, "rgba(255, 255, 255, 0.5)");
-        gradient.addColorStop(0.6, "rgba(255, 255, 255, 0)");
+        gradient.addColorStop(0, Qt.rgba(1.0, 1.0, 1.0, 0.5));
+        gradient.addColorStop(0.6, Qt.rgba(1.0, 1.0, 1.0, 0));
         context.fillStyle = gradient;
         context.fill();
     }

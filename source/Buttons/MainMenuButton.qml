@@ -36,8 +36,8 @@ Button {
                                         button.buttonRadius, button.buttonRadius);
 
                     var gradient = context.createLinearGradient(0, 0, 0, height);
-                    gradient.addColorStop(0, "rgb(30, 30, 35)");
-                    gradient.addColorStop(0.6, "rgb(45, 45, 60)");
+                    gradient.addColorStop(0, Qt.rgba(0.12, 0.12, 0.14, 1.0));
+                    gradient.addColorStop(0.6, Qt.rgba(0.18, 0.18, 0.24, 1.0));
                     context.fillStyle = gradient;
                     context.fill();
                 }
@@ -62,10 +62,10 @@ Button {
                                         button.iconSize - 2*context.lineWidth,
                                         button.iconRadius, button.iconRadius)
 
-                    context.strokeStyle = "rgba(0, 0, 0, 0.25)";
+                    context.strokeStyle = Qt.rgba(0, 0, 0, 0.25);
                     context.stroke();
 
-                    context.fillStyle = "rgba(0, 0, 0, 0.5)";
+                    context.fillStyle = Qt.rgba(0, 0, 0, 0.5);
                     context.fill();
                 }
             }
@@ -91,7 +91,7 @@ Button {
                 anchors.centerIn: parent
                 anchors.verticalCenterOffset: button.height * 0.25
 
-                color: button.hovered && !button.pressed ? "white" : "#ddd";
+                color: button.hovered && !button.pressed ? "white" : "#ddd"
             }
 
         }

@@ -12,5 +12,7 @@
         <file>icons/Rooms/roomsBathroom.svg</file>
         <file>icons/Rooms/roomsLiving.svg</file>
         <file>icons/Rooms/roomsFrontdoor.svg</file>
+        <file>icons/Sun.png</file>
+        <file>icons/Colors.png</file>
     </qresource>
 </RCC>

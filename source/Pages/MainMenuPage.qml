@@ -26,7 +26,6 @@ Page {
         MainMenuButton {buttonText: "RULES";    buttonIcon: "../icons/Blocks.png"}
         MainMenuButton {buttonText: "ACTIVITY"; buttonIcon: "../icons/Chart.png"}
         MainMenuButton {buttonText: "SETTINGS"; buttonIcon: "../icons/Gear.png"}
-
     }
 
     // Exit button
